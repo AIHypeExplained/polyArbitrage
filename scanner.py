@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+"""Polymarket arbitrage scanner
+
+Fetches open/active Polymarket markets, pulls CLOB buy prices, and generates
+reports of binary markets where YES+NO < $1 and negative-risk event baskets
+where the sum of YES legs < $1.
+
+Functions are roughly grouped as:
+- fetch_json / get_markets / get_buy_prices: data access helpers
+- parse_market: normalize raw API payload into a usable dict
+- scan_binary / scan_neg_risk_groups: analytics/scoring
+- build_report / print_summary: reporting + CLI output
+"""
+
+# --- API endpoints & default headers ---
+
 
 import argparse
 import json
